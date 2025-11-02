@@ -1,13 +1,17 @@
 // Обработчик открытия модального окна
-export function openModal(popup) {
-    popup.classList.add("popup--open");
-    addEventListenersPopup(popup);
+export function openModal(popup, onClose) {
+    popup.classList.add("popup_is-opened");
+    addEventListenersPopup(popup, onClose);
 }
 
 // Обработчик закрытия модального окна
-export function closeModal(popup) {
-    popup.classList.remove("popup--open");
+export function closeModal(popup, onClose) {
+    popup.classList.remove("popup_is-opened");
     removeEventListenersPopup(popup);
+
+    if (typeof onClose === 'function') {
+        onClose();
+    }
 }
 
 // Обработчик условий закрытия
