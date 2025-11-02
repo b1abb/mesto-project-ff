@@ -1,4 +1,4 @@
-import accesses from '../accesses.json';
+import accesses from '/accesses.json';
 
 const { ENDPOINT, TOKEN, GROUP_ID } = accesses;
 
