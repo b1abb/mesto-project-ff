@@ -144,7 +144,7 @@ const handlePopupDeleteCard = (evt) => {
     toggleButtonLoading(buttonSubmit, true, 'Удаление...');
 
     apiRequest(`/cards/${ _id }`, 'DELETE').then(() => handleDeleteCard(evt)).catch(handleResponseError).finally(() => {
-       toggleButtonLoading(buttonSubmit, false, 'Да');
+        toggleButtonLoading(buttonSubmit, false, 'Да');
         closeModal(popupDeleteCard);
     });
 };
@@ -234,7 +234,9 @@ function runRequests() {
         apiRequest('cards').then(handleCardsResponse).catch(handleResponseError),
     ];
 
-    return Promise.all(requests).then(() => {});
+    return Promise.all(requests).catch((err) => {
+        console.error(err);
+    });
 }
 
 enableValidation(validationSettings);
