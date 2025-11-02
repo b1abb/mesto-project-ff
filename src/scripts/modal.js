@@ -15,23 +15,16 @@ export function closeModal(popup, onClose) {
 }
 
 // Обработчик условий закрытия
-function handleConditionClose(evt, popup) {
+function handleClose(evt, popup, onClose) {
     if (evt.target === popup || evt.target.classList.contains("popup__close") || evt.key === "Escape") {
-        closeModal(popup);
-    }
-}
-
-// Обработчик нажатия на клавишу
-function handleKeydown(evt, popup) {
-    if (evt.key === "Escape") {
-        handleConditionClose(evt, popup);
+        closeModal(popup, onClose);
     }
 }
 
 // Функция добавления слушателей событий
-function addEventListenersPopup(popup) {
-    popup._closeHandler = (evt) => handleConditionClose(evt, popup);
-    popup._keydownHandler = (evt) => handleKeydown(evt, popup);
+function addEventListenersPopup(popup, onClose) {
+    popup._closeHandler = (evt) => handleClose(evt, popup, onClose);
+    popup._keydownHandler = (evt) => handleClose(evt, popup, onClose);
 
     popup.addEventListener('mousedown', popup._closeHandler);
     document.addEventListener('keydown', popup._keydownHandler);

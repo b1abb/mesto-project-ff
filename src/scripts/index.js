@@ -125,8 +125,6 @@ const handleCardFormSubmit = (evt) => {
 
 // Слушатели модального окна создания карточки
 buttonAddCard.addEventListener('click', function () {
-    formAddCard.reset();
-    clearValidation(formAddCard, validationSettings);
     openModal(popupAddCard, () => clearValidation(formAddCard, validationSettings));
 });
 formAddCard.addEventListener('submit', handleCardFormSubmit);

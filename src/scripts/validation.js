@@ -56,7 +56,6 @@ const showInputError = (formElement, inputElement, { inputErrorClass, errorClass
 
 // Функция скрытия ошибки
 const hideInputError = (formElement, inputElement, { inputErrorClass, errorClass }) => {
-
     const errorSpan = findErrorSpan(formElement, inputElement);
     if (!errorSpan) return;
 
@@ -139,13 +138,7 @@ export function clearValidation(formElement, {
     }
     const inputList = Array.from(formElement.querySelectorAll(settings.inputSelector || '.popup__input'));
 
-    inputList.forEach((inputElement) => hideInputError(formElement, inputElement, {
-        inputErrorClass: settings.inputErrorClass,
-        errorClass: settings.errorClass
-    }));
-    toggleSubmit(formElement, false, {
-        submitButtonSelector: settings.submitButtonSelector,
-        inactiveButtonClass: settings.inactiveButtonClass
-    });
+    inputList.forEach((inputElement) => hideInputError(formElement, inputElement, settings));
+    toggleSubmit(formElement, true, settings);
     formElement.reset();
 }
